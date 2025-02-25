@@ -1,0 +1,51 @@
+.sidebar {
+  max-width: 27rem;
+  width: 35%;
+  height: 100%;
+  padding: 4rem 3.2rem;
+  border-radius: 1rem;
+  background-color: transparent;
+  background-image: url("./../../assets/images/bg-sidebar-desktop.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+  color: var(--clr-neutral-white);
+}
+
+.sidebar__step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3.2rem;
+}
+
+.sidebar__step-number {
+  width: 3.2rem;
+  height: 3.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  border-radius: 50%;
+  border: 1px solid var(--clr-neutral-white);
+}
+
+.sidebar__step.active .sidebar__step-number {
+  background-color: var(--clr-primary-blue-200);
+  color: var(--clr-primary-blue-800);
+}
+
+.sidebar__step-info {
+  margin-left: 1.5rem;
+}
+
+.sidebar__step-info p:nth-of-type(1) {
+  color: var(--clr-primary-blue-400);
+  font-size: var(--fs-xsmall);
+}
+
+.sidebar__step-info p:nth-of-type(2) {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+}

@@ -4,28 +4,23 @@ interface SidebarProps {
   currentStep: 1 | 2 | 3 | 4 | 5;
 }
 
-const Sidebar = ({ currentStep }: SidebarProps) => {
-  const steps = [
-    { id: 1, label: "Your Info" },
-    { id: 2, label: "Select Plan" },
-    { id: 3, label: "Add-ons" },
-    { id: 4, label: "Summary" },
-  ];
+const STEPS = [
+  { id: 1, label: "Your Info" },
+  { id: 2, label: "Select Plan" },
+  { id: 3, label: "Add-ons" },
+  { id: 4, label: "Summary" },
+];
 
+const Sidebar = ({ currentStep }: SidebarProps) => {
   return (
     <aside className="sidebar">
-      {steps.map((step) => {
+      {STEPS.map((step) => {
         return (
-          <div
-            className={`sidebar__step ${
-              currentStep === step.id ? "active" : ""
-            }`}
-            key={step.id}
-          >
-            <div className="sidebar__step-number">{step.id}</div>
-            <div className="sidebar__step-info">
-              <p>{`Step ${step.id}`}</p>
-              <p>{step.label}</p>
+          <div className={`sidebar__step ${currentStep === step.id ? "sidebar__step--active" : ""}`} key={step.id}>
+            <div className="sidebar__step__number">{step.id}</div>
+            <div className="sidebar__step__info">
+              <span>{`Step ${step.id}`}</span>
+              <span>{step.label}</span>
             </div>
           </div>
         );

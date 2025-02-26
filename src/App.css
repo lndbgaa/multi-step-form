@@ -2,9 +2,8 @@ main {
   max-width: 94rem;
   width: 90vw;
   height: 60rem;
-  padding: 1.5rem;
+  padding: 1.6rem;
   display: flex;
-  justify-content: space-between;
-  border-radius: 1.5rem;
+  border-radius: 15px;
   background-color: var(--clr-neutral-white);
 }

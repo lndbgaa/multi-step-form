@@ -1,9 +1,8 @@
 .sidebar {
-  max-width: 27rem;
-  width: 35%;
-  height: 100%;
+  width: 35vw;
+  max-width: 27.4rem;
   padding: 4rem 3.2rem;
-  border-radius: 1rem;
+  border-radius: 8px;
   background-color: transparent;
   background-image: url("./../../assets/images/bg-sidebar-desktop.svg");
   background-size: cover;
@@ -18,7 +17,7 @@
   margin-bottom: 3.2rem;
 }
 
-.sidebar__step-number {
+.sidebar__step__number {
   width: 3.2rem;
   height: 3.2rem;
   display: flex;
@@ -30,21 +29,23 @@
   border: 1px solid var(--clr-neutral-white);
 }
 
-.sidebar__step.active .sidebar__step-number {
+.sidebar__step--active .sidebar__step__number {
   background-color: var(--clr-primary-blue-200);
   color: var(--clr-primary-blue-800);
 }
 
-.sidebar__step-info {
+.sidebar__step__info {
   margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar__step-info p:nth-of-type(1) {
+.sidebar__step__info span:first-of-type {
   color: var(--clr-primary-blue-400);
   font-size: var(--fs-xsmall);
 }
 
-.sidebar__step-info p:nth-of-type(2) {
+.sidebar__step__info span:last-of-type {
   font-size: var(--fs-small);
   font-weight: var(--fw-bold);
   letter-spacing: 1px;

@@ -1,92 +1,96 @@
-.step1 {
-  height: 100%;
-  padding: 4rem 0 1.6rem 0;
+.container {
   margin-left: 10rem;
+  padding: 4rem 0 1.6rem 0;
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (max-width: 1024px) {
-  .step1 {
+  .container {
     margin-left: 5rem;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .step1 {
+@media screen and (max-width: 900px) {
+  .container {
     margin-left: 2.5rem;
+    padding: 4rem 1rem 1.6rem 1rem;
   }
 }
 
-.step1 h1 {
+.title {
   margin-bottom: 1rem;
-  color: var(--clr-primary-blue-800);
   font-size: var(--fs-xlarge);
   font-weight: var(--fw-bold);
+  color: var(--clr-primary-blue-800);
 }
 
-.step1 p:first-of-type {
-  color: var(--clr-neutral-gray-600);
+.description {
   line-height: 2.5rem;
+  color: var(--clr-neutral-gray-600);
 }
 
-.step1__form {
+.form {
   flex: 1;
   margin-top: 3.5rem;
   display: flex;
   flex-direction: column;
 }
 
-.step1__form__name,
-.step1__form__email,
-.step1__form__phone {
+.form_name,
+.form_email,
+.form_phone {
   position: relative;
   margin-bottom: 2.4rem;
   display: flex;
   flex-direction: column;
 }
 
-.step1__form label {
+.form label {
   margin-bottom: 0.8rem;
   font-size: var(--fs-small);
   color: var(--clr-primary-blue-800);
 }
 
-.step1__form input {
+.form input {
   height: 4.8rem;
   padding: 1.6rem;
-  border-radius: 0.8rem;
+  border-radius: 8px;
   border: 1px solid var(--clr-neutral-gray-400);
   outline: none;
 }
 
-.step1__form input::placeholder {
-  font-weight: var(--fw-medium);
+.form input::placeholder {
   line-height: 2.5rem;
+  font-weight: var(--fw-medium);
   color: var(--clr-neutral-gray-600);
 }
 
-.step1__form input.hasError {
+.form input.hasError {
   border-color: var(--clr-primary-red);
 }
 
-.step1__form__btn {
-  padding: 1.5rem 2.4rem;
+.form input:focus {
+  border-color: var(--clr-primary-blue-600);
+}
+
+.next_btn {
   align-self: flex-end;
-  border-radius: 0.8rem;
-  color: var(--clr-neutral-white);
+  padding: 1.5rem 2.4rem;
   font-weight: var(--fw-medium);
+  color: var(--clr-neutral-white);
   background-color: var(--clr-primary-blue-800);
   border: none;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.step1__form__btn:hover {
+.next_btn:hover {
   background-color: #164a8a;
 }
 
-.error-message {
+.error_message {
   position: absolute;
   top: 0;
   right: 0;

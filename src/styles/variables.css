@@ -1,15 +1,15 @@
 :root {
-  --clr-primary-blue-800: hsl(213, 96%, 18%);
-  --clr-primary-blue-600: hsl(243, 100%, 62%);
-  --clr-primary-blue-400: hsl(228, 100%, 84%);
-  --clr-primary-blue-200: hsl(206, 94%, 87%);
-  --clr-primary-red: hsl(354, 84%, 57%);
+  --clr-primary-blue-800: #02295a;
+  --clr-primary-blue-600: #473dff;
+  --clr-primary-blue-400: #adbeff;
+  --clr-primary-blue-200: #bfe2fd;
+  --clr-primary-red: #ed3548;
 
-  --clr-neutral-gray-600: hsl(231, 11%, 63%);
-  --clr-neutral-gray-400: hsl(229, 24%, 87%);
-  --clr-neutral-magnolia: hsl(217, 100%, 97%);
-  --clr-neutral-alabaster: hsl(231, 100%, 99%);
-  --clr-neutral-white: hsl(0, 0%, 100%);
+  --clr-neutral-gray-600: #9699ab;
+  --clr-neutral-gray-400: #d6d9e6;
+  --clr-neutral-magnolia: #f0f6ff;
+  --clr-neutral-alabaster: #fafbff;
+  --clr-neutral-white: #ffffff;
 
   --fs-xsmall: 1.2rem;
   --fs-small: 1.4rem;

@@ -1,59 +1,34 @@
-import { AddOns, AddOnsOption, Billing, Step } from "../../types";
+import { ADDONS } from "../../constants";
+import { AddOn, AddOnId, Billing, StepId } from "../../types";
+import BackBtn from "../BackBtn/BackBtn";
+import NextBtn from "../NextBtn/NextBtn";
 import style from "./Step3.module.css";
 
 interface Step3Props {
-  billing: Billing;
-  addOns: AddOns;
-  setCurrentStep: React.Dispatch<React.SetStateAction<Step>>;
-  setAddOns: React.Dispatch<React.SetStateAction<AddOns>>;
+  selectedBilling: Billing;
+  selectedAddons: AddOn[];
+  setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
+  setSelectedAddons: React.Dispatch<React.SetStateAction<AddOn[]>>;
 }
 
-const ADDONS = [
-  {
-    id: "online",
-    label: "Online service",
-    description: "Access to multiplayer games",
-    prices: {
-      month: 1,
-      year: 10,
-    },
-  },
-  {
-    id: "storage",
-    label: "Larger storage",
-    description: "Extra 1TB opf cloud save",
-    prices: {
-      month: 2,
-      year: 20,
-    },
-  },
-  {
-    id: "profile",
-    label: "Customizable profile",
-    description: "Custom theme on your profile",
-    prices: {
-      month: 2,
-      year: 20,
-    },
-  },
-];
-
-const Step3 = ({ billing, addOns, setCurrentStep, setAddOns }: Step3Props) => {
-  const handleDivClick = (addonId: string) => {
-    const isAddonInList = addOns.includes(addonId as AddOnsOption);
+const Step3 = ({ selectedBilling, selectedAddons, setCurrentStep, setSelectedAddons }: Step3Props) => {
+  //
+  const handleDivClick = (id: AddOnId) => {
+    const isAddonInList = selectedAddons.some((a: AddOn) => a.id === id);
 
     // If the addon is already in the list, remove it; otherwise, add it
-    const newAddOns = isAddonInList ? addOns.filter((addon) => addon !== addonId) : [...addOns, addonId];
-    setAddOns(newAddOns as AddOns);
+    const newAddOns = isAddonInList
+      ? selectedAddons.filter((a: AddOn) => a.id !== id)
+      : [...selectedAddons, ADDONS.find((a: AddOn) => a.id === id)].filter(Boolean);
+    setSelectedAddons(newAddOns as AddOn[]);
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { checked } = e.target;
-    const value = e.target.value as AddOnsOption;
-
+  const handleCheckboxChange = ({ target: { checked, value } }: React.ChangeEvent<HTMLInputElement>) => {
     // If the checkbox is checked, add the addon; otherwise, remove it
-    const newAddOns = checked ? [...addOns, value] : addOns.filter((addon) => addon !== value);
-    setAddOns(newAddOns);
+    const newAddOns = checked
+      ? [...selectedAddons, ADDONS.find((a: AddOn) => a.id === value)]
+      : selectedAddons.filter((a: AddOn) => a.id !== value);
+    setSelectedAddons(newAddOns as AddOn[]);
   };
 
   return (
@@ -62,18 +37,18 @@ const Step3 = ({ billing, addOns, setCurrentStep, setAddOns }: Step3Props) => {
 
       <p className={style.description}>Add-ons help enhance your gaming experience.</p>
 
-      <form className={style.form}>
-        {ADDONS.map((addon) => {
+      <form noValidate className={style.form}>
+        {ADDONS.map((addon: AddOn) => {
           const { id, label, description, prices } = addon;
-          const price = billing === "monthly" ? `+$${prices.month}/mo` : `+$${prices.year}/yr`;
-          const isSelected = addOns.includes(id as AddOnsOption);
+          const price: string = selectedBilling === "yearly" ? `+$${prices.year}/yr` : `+$${prices.month}/mo`;
+          const isSelected: boolean = selectedAddons.some((a: AddOn) => a.id === id);
           return (
             <div
               key={id}
               className={`${style.addon} ${isSelected ? style.active : ""}`}
               onClick={() => handleDivClick(id)}
             >
-              <label className={style.addon_check} onClick={(e) => e.stopPropagation()}>
+              <label className={style.checkbox} onClick={(e) => e.stopPropagation()}>
                 <input
                   type="checkbox"
                   name="addon"
@@ -85,27 +60,21 @@ const Step3 = ({ billing, addOns, setCurrentStep, setAddOns }: Step3Props) => {
                 <div className={style.checkmark}></div>
               </label>
 
-              <div className={style.addon_info}>
-                <h2>{label}</h2>
+              <div className={style.info}>
+                <h3>{label}</h3>
                 <p>{description}</p>
               </div>
 
-              <div className={style.addon_price}>
-                <span>{price}</span>
-              </div>
+              <p className={style.price}>{price}</p>
             </div>
           );
         })}
       </form>
 
-      <div className={style.btn_group}>
-        <button type="button" className={style.back_btn} onClick={() => setCurrentStep(2)}>
-          Go Back
-        </button>
+      <div className={style.btnGroup}>
+        <BackBtn handleClick={() => setCurrentStep(2)} />
 
-        <button type="button" className={style.next_btn} onClick={() => setCurrentStep(4)}>
-          Next Step
-        </button>
+        <NextBtn content="Next Step" handleClick={() => setCurrentStep(4)} />
       </div>
     </div>
   );

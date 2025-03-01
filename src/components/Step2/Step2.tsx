@@ -1,41 +1,31 @@
-import { Billing, Plan, Step } from "../../types";
-import advancedIcon from "./../../assets/images/icon-advanced.svg";
-import arcadeIcon from "./../../assets/images/icon-arcade.svg";
-import proIcon from "./../../assets/images/icon-pro.svg";
+import { PLANS } from "../../constants";
+import { Billing, Plan, StepId } from "../../types";
+import BackBtn from "../BackBtn/BackBtn";
+import NextBtn from "../NextBtn/NextBtn";
 import style from "./Step2.module.css";
 
 interface Step2Props {
   selectedPlan: Plan;
-  billing: Billing;
-  setCurrentStep: React.Dispatch<React.SetStateAction<Step>>;
+  selectedBilling: Billing;
+  setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
   setSelectedPlan: React.Dispatch<React.SetStateAction<Plan>>;
-  setBilling: React.Dispatch<React.SetStateAction<Billing>>;
+  setSelectedBilling: React.Dispatch<React.SetStateAction<Billing>>;
 }
 
-const PLANS = [
-  { id: "arcade", label: "Arcade", prices: { month: 9, year: 90 }, icon: arcadeIcon },
-  { id: "advanced", label: "Advanced", prices: { month: 12, year: 120 }, icon: advancedIcon },
-  { id: "pro", label: "Pro", prices: { month: 15, year: 150 }, icon: proIcon },
-];
-
-const Step2 = ({ selectedPlan, billing, setSelectedPlan, setBilling, setCurrentStep }: Step2Props) => {
-  const handlePlanChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value as Plan;
-    setSelectedPlan(value);
+const Step2 = ({ selectedPlan, selectedBilling, setSelectedPlan, setSelectedBilling, setCurrentStep }: Step2Props) => {
+  const handlePlanChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = PLANS.find((plan: Plan) => plan.id === value) as Plan;
+    if (selected) {
+      setSelectedPlan(selected);
+    }
   };
 
-  const handleBillingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newBilling: Billing = e.target.checked ? "yearly" : "monthly";
-    setBilling(newBilling);
+  const handleBillingChange = ({ target: { checked } }: React.ChangeEvent<HTMLInputElement>) => {
+    const newBilling: Billing = checked ? "yearly" : "monthly";
+    setSelectedBilling(newBilling);
   };
 
-  const handleBack = () => {
-    setCurrentStep(1);
-  };
-
-  const handleNext = () => {
-    setCurrentStep(3);
-  };
+  const isYearly = selectedBilling === "yearly";
 
   return (
     <div className={style.container}>
@@ -44,28 +34,29 @@ const Step2 = ({ selectedPlan, billing, setSelectedPlan, setBilling, setCurrentS
       <p className={style.description}>You have the option of monthly or yearly billing.</p>
 
       <form noValidate className={style.form}>
-        <div className={style.plans}>
-          {PLANS.map((plan) => {
+        <div className={style.plansWrapper}>
+          {PLANS.map((plan: Plan) => {
             const { id, label, prices, icon } = plan;
-            const price = billing === "monthly" ? `$${prices.month}/mo` : `$${prices.year}/yr`;
-            const isSelected = selectedPlan === id;
+            const price: string = isYearly ? `$${prices.year}/yr` : `$${prices.month}/mo`;
+            const isSelected: boolean = selectedPlan.id === id;
             return (
-              <label key={id} className={`${style.plan} ${isSelected ? style.active : ""}`}>
-                <img src={icon} alt="" className={style.plan_icon} aria-hidden="true" />
+              <label htmlFor={id} key={id} className={`${style.plan} ${isSelected ? style.active : ""}`}>
+                <img src={icon} aria-hidden="true" />
 
                 <input
                   type="radio"
+                  id={id}
                   name="plan"
                   value={id}
-                  className={style.plan_input}
                   checked={isSelected}
                   onChange={handlePlanChange}
                   aria-checked={isSelected ? "true" : "false"}
                 />
 
-                <div className={style.plan_info}>
+                <div className={style.info}>
                   <span>{label}</span>
                   <span>{price}</span>
+                  {isYearly && <span>2 months free</span>}
                 </div>
               </label>
             );
@@ -73,29 +64,25 @@ const Step2 = ({ selectedPlan, billing, setSelectedPlan, setBilling, setCurrentS
         </div>
 
         <div className={style.billing}>
-          <span className={`${style.label} ${billing == "monthly" ? style.active : ""}`}>Monthly</span>
-          <label className={style.switch}>
+          <span className={`${style.label} ${!isYearly ? style.active : ""}`}>Monthly</span>
+          <label htmlFor="billing" className={style.switch}>
             <input
               type="checkbox"
-              value={billing}
-              className={style.switch_input}
-              checked={billing === "yearly"}
+              id="billing"
+              value={selectedBilling}
+              checked={isYearly}
               onChange={handleBillingChange}
             />
-            <span className={style.switch_slider}></span>
+            <span className={style.slider}></span>
           </label>
-          <span className={`${style.label} ${billing == "yearly" ? style.active : ""}`}>Yearly</span>
+          <span className={`${style.label} ${isYearly ? style.active : ""}`}>Yearly</span>
         </div>
       </form>
 
-      <div className={style.btn_group}>
-        <button type="button" className={style.back_btn} onClick={handleBack}>
-          Go Back
-        </button>
+      <div className={style.btnGroup}>
+        <BackBtn handleClick={() => setCurrentStep(1)} />
 
-        <button type="button" className={style.next_btn} onClick={handleNext}>
-          Next Step
-        </button>
+        <NextBtn content="Next Step" handleClick={() => setCurrentStep(3)} />
       </div>
     </div>
   );

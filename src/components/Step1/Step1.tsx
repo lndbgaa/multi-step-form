@@ -1,33 +1,26 @@
 import { useState } from "react";
 import { isValidEmail, isValidPhone } from "../../utils/validators.ts";
-import { PersonalInfo, Step } from "./../../types.ts";
+import NextBtn from "../NextBtn/NextBtn.tsx";
+import { PersonalInfo, StepId } from "./../../types.ts";
 import style from "./Step1.module.css";
 
 interface Step1Props {
-  setCurrentStep: React.Dispatch<React.SetStateAction<Step>>;
   personalInfo: PersonalInfo;
+  setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
   setPersonalInfo: React.Dispatch<React.SetStateAction<PersonalInfo>>;
 }
 
 const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) => {
   const [error, setError] = useState<{ [key: string]: string }>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({ target: { id, value } }: React.ChangeEvent<HTMLInputElement>) => {
     setError((prev) => ({ ...prev, [id]: "" }));
-
-    const { id, value } = e.target;
     setPersonalInfo((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target;
+  // Remove leading and trailing whitespace from input value when the field loses focus
+  const handleBlur = ({ target: { id, value } }: React.ChangeEvent<HTMLInputElement>) => {
     setPersonalInfo((prev) => ({ ...prev, [id]: value.trim() }));
-  };
-
-  const handleBtnClick = () => {
-    if (validateForm()) {
-      setCurrentStep(2);
-    }
   };
 
   const validateForm = (): boolean => {
@@ -66,9 +59,9 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
       <p className={style.description}>Please provide your name, email address, and phone number.</p>
 
       <form noValidate className={style.form}>
-        <div className={style.form_name}>
+        <div className={style.name}>
           {error.name && (
-            <span className={style.error_message} aria-live="polite">
+            <span className={style.error} aria-live="polite">
               {error.name}
             </span>
           )}
@@ -83,9 +76,9 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
             onBlur={handleBlur}
           ></input>
         </div>
-        <div className={style.form_email}>
+        <div className={style.email}>
           {error.email && (
-            <span className={style.error_message} aria-live="polite">
+            <span className={style.error} aria-live="polite">
               {error.email}
             </span>
           )}
@@ -100,9 +93,9 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
             onBlur={handleBlur}
           ></input>
         </div>
-        <div className={style.form_phone}>
+        <div className={style.phone}>
           {error.phone && (
-            <span className={style.error_message} aria-live="polite">
+            <span className={style.error} aria-live="polite">
               {error.phone}
             </span>
           )}
@@ -119,9 +112,7 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
         </div>
       </form>
 
-      <button type="button" className={style.next_btn} onClick={handleBtnClick}>
-        Next Step
-      </button>
+      <NextBtn content="Next Step" handleClick={() => validateForm() && setCurrentStep(2)} />
     </div>
   );
 };

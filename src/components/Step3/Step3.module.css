@@ -1,8 +1,21 @@
 .container {
+  width: 45rem;
   margin-left: 10rem;
   padding: 4rem 0 1.6rem 0;
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-left: 8rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    margin-left: 4rem;
+  }
 }
 
 .title {
@@ -13,20 +26,17 @@
 }
 
 .description {
-  line-height: 2.5rem;
+  margin-bottom: 3.5rem;
+  line-height: 25px;
   color: var(--clr-neutral-gray-600);
 }
 
 .form {
   flex: 1;
-  margin-top: 3.5rem;
-  display: flex;
-  flex-direction: column;
 }
 
 .addon {
   height: 8rem;
-  width: 45rem; /* !!! */
   margin-bottom: 1.6rem;
   padding: 1.8rem 2.4rem;
   display: flex;
@@ -46,7 +56,12 @@
   border-color: var(--clr-primary-blue-600);
 }
 
-.addon_check input {
+.addon .checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.addon .checkbox input {
   position: absolute;
   opacity: 0;
   height: 0;
@@ -54,12 +69,7 @@
   pointer-events: none;
 }
 
-.addon_check {
-  position: relative;
-  cursor: pointer;
-}
-
-.checkmark {
+.addon .checkbox .checkmark {
   position: relative;
   top: 0;
   left: 0;
@@ -70,22 +80,22 @@
   border: 1px solid var(--clr-neutral-gray-400);
 }
 
-.addon_check input:checked ~ .checkmark {
+.addon .checkbox input:checked ~ .checkmark {
   background-color: var(--clr-primary-blue-600);
   border: none;
 }
 
-.checkmark:after {
+.addon .checkbox .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.addon_check input:checked ~ .checkmark:after {
+.addon .checkbox input:checked ~ .checkmark:after {
   display: block;
 }
 
-.addon_check .checkmark:after {
+.addon .checkbox .checkmark:after {
   left: 0.7rem;
   top: 0.4rem;
   width: 0.5rem;
@@ -95,63 +105,31 @@
   transform: rotate(45deg);
 }
 
-.addon_info {
+.addon .info {
   margin-left: 2.4rem;
 }
 
-.addon_info h2 {
+.addon .info h3 {
   font-size: var(--fs-base);
   color: var(--clr-primary-blue-800);
   font-weight: var(--fw-medium);
 }
 
-.addon_info p {
+.addon .info p {
   line-height: 2rem;
   font-size: var(--fs-small);
   color: var(--clr-neutral-gray-600);
 }
 
-.addon_price {
+.addon .price {
   margin-left: auto;
-}
-
-.addon_price span {
-  line-height: 2rem;
+  line-height: 20px;
   font-size: var(--fs-small);
   color: var(--clr-primary-blue-600);
 }
 
-.btn_group {
+.btnGroup {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.back_btn {
-  font-weight: var(--fw-medium);
-  color: var(--clr-neutral-gray-600);
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: all 0.3s;
-}
-
-.back_btn:hover {
-  color: var(--clr-primary-blue-800);
-}
-
-.next_btn {
-  align-self: flex-end;
-  padding: 1.5rem 2.4rem;
-  border-radius: 8px;
-  font-weight: var(--fw-medium);
-  color: var(--clr-neutral-white);
-  background-color: var(--clr-primary-blue-800);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.next_btn:hover {
-  background-color: #164a8a;
 }

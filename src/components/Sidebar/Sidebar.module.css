@@ -6,8 +6,6 @@
   background-image: url("./../../assets/images/bg-sidebar-desktop.svg");
   background-size: cover;
   background-repeat: no-repeat;
-  text-transform: uppercase;
-  color: var(--clr-neutral-white);
 }
 
 @media screen and (max-width: 900px) {
@@ -23,7 +21,7 @@
   align-items: center;
 }
 
-.step_number {
+.step .number {
   width: 3.2rem;
   height: 3.2rem;
   display: flex;
@@ -31,28 +29,31 @@
   align-items: center;
   font-size: var(--fs-small);
   font-weight: var(--fw-bold);
+  color: var(--clr-neutral-white);
   border-radius: 50%;
   border: 1px solid var(--clr-neutral-white);
 }
 
-.step.active .step_number {
-  background-color: var(--clr-primary-blue-200);
+.step.active .number {
   color: var(--clr-primary-blue-800);
+  background-color: var(--clr-primary-blue-200);
 }
 
-.step_info {
+.step .info {
   margin-left: 1.6rem;
   display: flex;
   flex-direction: column;
+  text-transform: uppercase;
 }
 
-.step_info span:first-of-type {
+.step .info span:first-of-type {
   font-size: var(--fs-xsmall);
   color: var(--clr-primary-blue-400);
 }
 
-.step_info span:last-of-type {
+.step .info span:last-of-type {
   letter-spacing: 1px;
   font-size: var(--fs-small);
   font-weight: var(--fw-bold);
+  color: var(--clr-neutral-white);
 }

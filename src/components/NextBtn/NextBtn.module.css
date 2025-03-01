@@ -1,0 +1,15 @@
+.nextBtn {
+  align-self: flex-end;
+  padding: 1.5rem 2.4rem;
+  font-weight: var(--fw-medium);
+  color: var(--clr-neutral-white);
+  background-color: var(--clr-primary-blue-800);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nextBtn:hover {
+  opacity: 0.9;
+}

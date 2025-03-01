@@ -1,0 +1,131 @@
+.container {
+  width: 45rem;
+  margin-left: 10rem;
+  padding: 4rem 0 1.6rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    margin-left: 8rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    margin-left: 4rem;
+  }
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: var(--fs-xlarge);
+  font-weight: var(--fw-bold);
+  color: var(--clr-primary-blue-800);
+}
+
+.description {
+  margin-bottom: 3.5rem;
+  line-height: 25px;
+  color: var(--clr-neutral-gray-600);
+}
+
+.summary {
+  flex: 1;
+}
+
+.recap {
+  margin-bottom: 2.4rem;
+  padding: 1.6rem 2.4rem;
+  border-radius: 8px;
+  background-color: var(--clr-neutral-alabaster);
+}
+
+.plan {
+  padding-bottom: 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--clr-neutral-gray-400);
+}
+
+.plan .label {
+  margin-bottom: 1rem;
+  font-weight: var(--fw-medium);
+  color: var(--clr-primary-blue-800);
+}
+
+.changeBtn {
+  font-size: var(--fs-small);
+  text-decoration: underline;
+  color: var(--clr-neutral-gray-600);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.changeBtn:hover {
+  color: var(--clr-primary-blue-600);
+}
+
+.plan .price {
+  font-weight: var(--fw-bold);
+  color: var(--clr-primary-blue-800);
+}
+
+.noAddons {
+  padding-top: 1.6rem;
+  font-size: var(--fs-small);
+  color: var(--clr-neutral-gray-600);
+}
+
+.addons {
+  padding-top: 1.6rem;
+}
+
+.addon {
+  margin-bottom: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addon:last-of-type {
+  margin-bottom: 0;
+}
+
+.addon span:first-of-type {
+  font-size: var(--fs-small);
+  color: var(--clr-neutral-gray-600);
+}
+
+.addon span:last-of-type {
+  font-size: var(--fs-small);
+  color: var(--clr-primary-blue-800);
+}
+
+.total {
+  padding: 0 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total span:first-of-type {
+  font-size: var(--fs-small);
+  color: var(--clr-neutral-gray-600);
+}
+
+.total span:last-of-type {
+  font-size: 2rem;
+  font-weight: var(--fw-bold);
+  color: var(--clr-primary-blue-600);
+}
+
+.btnGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

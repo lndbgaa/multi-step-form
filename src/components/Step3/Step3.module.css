@@ -1,7 +1,7 @@
 .container {
   width: 45rem;
   margin-left: 10rem;
-  padding: 4rem 0 1.6rem 0;
+  padding: 4rem 0 1.6rem;
   display: flex;
   flex-direction: column;
 }
@@ -88,21 +88,18 @@
 .addon .checkbox .checkmark:after {
   content: "";
   position: absolute;
-  display: none;
-}
-
-.addon .checkbox input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.addon .checkbox .checkmark:after {
   left: 0.7rem;
   top: 0.4rem;
   width: 0.5rem;
   height: 1rem;
+  display: none;
   border: solid var(--clr-neutral-white);
   border-width: 0 0.2rem 0.2rem 0;
   transform: rotate(45deg);
+}
+
+.addon .checkbox input:checked ~ .checkmark:after {
+  display: block;
 }
 
 .addon .info {

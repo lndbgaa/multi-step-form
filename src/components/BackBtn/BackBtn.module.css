@@ -1,4 +1,4 @@
-.backBtn {
+.btn {
   font-weight: var(--fw-medium);
   color: var(--clr-neutral-gray-600);
   cursor: pointer;
@@ -7,6 +7,6 @@
   transition: all 0.3s;
 }
 
-.backBtn:hover {
+.btn:hover {
   color: var(--clr-primary-blue-800);
 }

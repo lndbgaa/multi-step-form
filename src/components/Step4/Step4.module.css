@@ -4,17 +4,44 @@
   padding: 4rem 0 1.6rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 1024px) {
   .container {
-    margin-left: 8rem;
+    margin-left: 4rem;
   }
 }
 
 @media screen and (max-width: 900px) {
   .container {
-    margin-left: 4rem;
+    margin-left: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 45rem;
+    align-self: center;
+    padding: 3.2rem 2.4rem;
+    border-radius: 10px;
+    background-color: var(--clr-neutral-white);
+    transform: translateY(-10rem);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content {
+    width: 35rem;
   }
 }
 
@@ -23,6 +50,12 @@
   font-size: var(--fs-xlarge);
   font-weight: var(--fw-bold);
   color: var(--clr-primary-blue-800);
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: var(--fs-large);
+  }
 }
 
 .description {
@@ -75,6 +108,12 @@
   color: var(--clr-primary-blue-800);
 }
 
+@media screen and (max-width: 768px) {
+  .plan .price {
+    font-size: var(--fs-small);
+  }
+}
+
 .noAddons {
   padding-top: 1.6rem;
   font-size: var(--fs-small);
@@ -124,8 +163,21 @@
   color: var(--clr-primary-blue-600);
 }
 
-.btnGroup {
+@media screen and (max-width: 768px) {
+  .total span:last-of-type {
+    font-size: var(--fs-base);
+  }
+}
+
+.controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .controls {
+    padding: 1.6rem 3.2rem;
+    background-color: var(--clr-neutral-white);
+  }
 }

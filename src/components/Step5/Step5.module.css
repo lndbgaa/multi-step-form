@@ -7,6 +7,17 @@
   align-items: center;
 }
 
+@media screen and (max-width: 768px) {
+  .container {
+    width: 35rem;
+    margin: 0 auto;
+    padding: 7.9rem 2.4rem;
+    border-radius: 10px;
+    background-color: var(--clr-neutral-white);
+    transform: translateY(-10rem);
+  }
+}
+
 .container img {
   margin-bottom: 3.2rem;
   width: 8rem;
@@ -20,6 +31,12 @@
   color: var(--clr-primary-blue-800);
 }
 
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: var(--fs-large);
+  }
+}
+
 .description {
   text-align: center;
   line-height: 25px;
@@ -29,5 +46,11 @@
 @media screen and (max-width: 900px) {
   .description {
     padding: 0 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .description {
+    padding: 0;
   }
 }

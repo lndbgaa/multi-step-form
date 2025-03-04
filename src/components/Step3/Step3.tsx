@@ -7,8 +7,8 @@ import style from "./Step3.module.css";
 interface Step3Props {
   selectedBilling: Billing;
   selectedAddons: AddOn[];
-  setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
   setSelectedAddons: React.Dispatch<React.SetStateAction<AddOn[]>>;
+  setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
 }
 
 const Step3 = ({ selectedBilling, selectedAddons, setCurrentStep, setSelectedAddons }: Step3Props) => {
@@ -33,48 +33,49 @@ const Step3 = ({ selectedBilling, selectedAddons, setCurrentStep, setSelectedAdd
 
   return (
     <div className={style.container}>
-      <h1 className={style.title}>Pick add-ons</h1>
+      <div className={style.content}>
+        <h1 className={style.title}>Pick add-ons</h1>
 
-      <p className={style.description}>Add-ons help enhance your gaming experience.</p>
+        <p className={style.description}>Add-ons help enhance your gaming experience.</p>
 
-      <form noValidate className={style.form}>
-        {ADDONS.map((addon: AddOn) => {
-          const { id, label, description, prices } = addon;
-          const price: string = selectedBilling === "yearly" ? `+$${prices.year}/yr` : `+$${prices.month}/mo`;
-          const isSelected: boolean = selectedAddons.some((a: AddOn) => a.id === id);
-          return (
-            <div
-              key={id}
-              className={`${style.addon} ${isSelected ? style.active : ""}`}
-              onClick={() => handleDivClick(id)}
-            >
-              <label className={style.checkbox} onClick={(e) => e.stopPropagation()}>
-                <input
-                  type="checkbox"
-                  name="addon"
-                  value={id}
-                  checked={isSelected}
-                  onChange={handleCheckboxChange}
-                  aria-checked={isSelected}
-                />
-                <div className={style.checkmark}></div>
-              </label>
+        <form noValidate className={style.form}>
+          {ADDONS.map((addon: AddOn) => {
+            const { id, label, description, prices } = addon;
+            const price: string = selectedBilling === "yearly" ? `+$${prices.year}/yr` : `+$${prices.month}/mo`;
+            const isSelected: boolean = selectedAddons.some((a: AddOn) => a.id === id);
+            return (
+              <div
+                key={id}
+                className={`${style.addon} ${isSelected ? style.active : ""}`}
+                onClick={() => handleDivClick(id)}
+              >
+                <label className={style.checkbox} onClick={(e) => e.stopPropagation()}>
+                  <input
+                    type="checkbox"
+                    name="addon"
+                    value={id}
+                    checked={isSelected}
+                    onChange={handleCheckboxChange}
+                    aria-checked={isSelected}
+                  />
+                  <div className={style.checkmark}></div>
+                </label>
 
-              <div className={style.info}>
-                <h3>{label}</h3>
-                <p>{description}</p>
+                <div className={style.info}>
+                  <h3>{label}</h3>
+                  <p>{description}</p>
+                </div>
+
+                <p className={style.price}>{price}</p>
               </div>
+            );
+          })}
+        </form>
+      </div>
 
-              <p className={style.price}>{price}</p>
-            </div>
-          );
-        })}
-      </form>
-
-      <div className={style.btnGroup}>
+      <div className={style.controls}>
         <BackBtn handleClick={() => setCurrentStep(2)} />
-
-        <NextBtn content="Next Step" handleClick={() => setCurrentStep(4)} />
+        <NextBtn handleClick={() => setCurrentStep(4)} />
       </div>
     </div>
   );

@@ -1,21 +1,13 @@
 import style from "./NextBtn.module.css";
 
-interface NextBtnProps {
-  content: string;
-  backgroundColor?: string;
+interface BtnProps {
   handleClick: () => void;
 }
 
-const NextBtn = ({ content, backgroundColor, handleClick }: NextBtnProps) => {
+const NextBtn = ({ handleClick }: BtnProps) => {
   return (
-    <button
-      type="button"
-      className={style.nextBtn}
-      style={{ backgroundColor }}
-      onClick={handleClick}
-      aria-label="Go to the next step"
-    >
-      {content}
+    <button type="button" className={style.btn} onClick={handleClick} aria-label="Go to the next step">
+      Next Step
     </button>
   );
 };

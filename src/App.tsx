@@ -53,6 +53,7 @@ function App() {
   return (
     <main>
       <SideBar currentStep={currentStep} />
+
       {steps[currentStep]}
     </main>
   );

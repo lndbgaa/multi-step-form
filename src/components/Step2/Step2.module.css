@@ -4,17 +4,44 @@
   padding: 4rem 0 1.6rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 1024px) {
   .container {
-    margin-left: 8rem;
+    margin-left: 4rem;
   }
 }
 
 @media screen and (max-width: 900px) {
   .container {
-    margin-left: 4rem;
+    margin-left: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    width: 45rem;
+    align-self: center;
+    padding: 3.2rem 2.4rem;
+    border-radius: 10px;
+    background-color: var(--clr-neutral-white);
+    transform: translateY(-10rem);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content {
+    width: 35rem;
   }
 }
 
@@ -25,20 +52,30 @@
   color: var(--clr-primary-blue-800);
 }
 
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: var(--fs-large);
+  }
+}
+
 .description {
   margin-bottom: 3.5rem;
   line-height: 25px;
   color: var(--clr-neutral-gray-600);
 }
 
-.form {
-  flex: 1;
-}
-
 .plansWrapper {
+  margin-bottom: 3.2rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(10rem, 13.8rem));
   gap: 1.8rem;
+}
+
+@media screen and (max-width: 768px) {
+  .plansWrapper {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
 }
 
 .plan {
@@ -53,6 +90,16 @@
   transition: all 0.15s;
 }
 
+@media screen and (max-width: 768px) {
+  .plan {
+    max-height: 10rem;
+    height: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
 .plan.active {
   background-color: var(--clr-neutral-alabaster);
   border-color: var(--clr-primary-blue-600);
@@ -65,6 +112,12 @@
 .plan img {
   width: 4rem;
   height: 4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .plan img {
+    margin-right: 1.4rem;
+  }
 }
 
 /* hide radio and checkbox input */
@@ -102,7 +155,6 @@
 
 .billing {
   height: 4.8rem;
-  margin-top: 3.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,8 +227,15 @@
   transform: translateX(-150%);
 }
 
-.btnGroup {
+.controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .controls {
+    padding: 1.6rem 3.2rem;
+    background-color: var(--clr-neutral-white);
+  }
 }

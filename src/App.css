@@ -1,9 +1,26 @@
 main {
-  width: 92vw;
+  width: 90vw;
   max-width: 94rem;
   height: 60rem;
   padding: 1.6rem;
   display: flex;
   border-radius: 15px;
   background-color: var(--clr-neutral-white);
+}
+
+@media screen and (max-width: 900px) {
+  main {
+    height: 55rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    flex-direction: column;
+    border-radius: 0;
+    background-color: transparent;
+  }
 }

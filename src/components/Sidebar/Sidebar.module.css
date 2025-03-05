@@ -1,11 +1,9 @@
 .container {
   --container-width: 27.4rem;
-  --container-height: 100%;
   --container-padding: 4rem 3.2rem;
 
   max-width: var(--container-width);
   width: min(100%, var(--container-width));
-  height: var(--container-height);
   padding: var(--container-padding);
   display: flex;
   flex-direction: column;
@@ -24,8 +22,8 @@
 @media screen and (max-width: 768px) {
   .container {
     --container-width: 100%;
-    --container-height: 20rem; /* !!! */
 
+    height: 20rem; /* !!! */
     flex-direction: row;
     justify-content: center;
     border-radius: 0;

@@ -50,6 +50,8 @@ p.description {
   padding: 1.6rem;
   border-radius: 8px;
   border: 1px solid var(--clr-neutral-gray-400);
+  font-weight: var(--fw-medium);
+  color: var(--clr-primary-blue-800);
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -100,6 +102,7 @@ span.error {
 @media screen and (max-width: 768px) {
   div.container {
     --container-width: 100%;
+    --container-height: calc(100vh - 15rem);
     --container-margin: 0;
     --container-padding: 0;
   }

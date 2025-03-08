@@ -2,7 +2,7 @@ import { useState } from "react";
 import { isValidEmail, isValidPhone } from "../../utils/validators.ts";
 import NextBtn from "../NextBtn/NextBtn.tsx";
 import { PersonalInfo, StepId } from "./../../types.ts";
-import style from "./Step1.module.css";
+import styles from "./Step1.module.css";
 
 interface Step1Props {
   personalInfo: PersonalInfo;
@@ -13,7 +13,9 @@ interface Step1Props {
 const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) => {
   const [error, setError] = useState<{ [key: string]: string }>({});
 
-  const handleChange = ({ target: { id, value } }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = ({
+    target: { id, value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     setError((prev) => ({ ...prev, [id]: "" }));
     setPersonalInfo((prev) => ({ ...prev, [id]: value }));
   };
@@ -53,16 +55,18 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.content}>
-        <h1 className={style.title}>Personal info</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Personal info</h1>
 
-        <p className={style.description}>Please provide your name, email address, and phone number.</p>
+        <p className={styles.description}>
+          Please provide your name, email address, and phone number.
+        </p>
 
-        <form noValidate className={style.form}>
-          <div className={style.name}>
+        <form noValidate className={styles.form}>
+          <div className={styles.name}>
             {error.name && (
-              <span className={style.error} aria-live="polite">
+              <span className={styles.error} aria-live="polite">
                 {error.name}
               </span>
             )}
@@ -70,16 +74,16 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
             <input
               type="text"
               id="name"
-              className={error.name ? style.hasError : ""}
+              className={error.name ? styles.hasError : ""}
               value={personalInfo.name}
               placeholder="e.g. Stephen King"
               onChange={handleChange}
               onBlur={handleBlur}
             ></input>
           </div>
-          <div className={style.email}>
+          <div className={styles.email}>
             {error.email && (
-              <span className={style.error} aria-live="polite">
+              <span className={styles.error} aria-live="polite">
                 {error.email}
               </span>
             )}
@@ -87,16 +91,16 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
             <input
               type="email"
               id="email"
-              className={error.email ? style.hasError : ""}
+              className={error.email ? styles.hasError : ""}
               value={personalInfo.email}
               placeholder="e.g. stephenking@lorem.com"
               onChange={handleChange}
               onBlur={handleBlur}
             ></input>
           </div>
-          <div className={style.phone}>
+          <div className={styles.phone}>
             {error.phone && (
-              <span className={style.error} aria-live="polite">
+              <span className={styles.error} aria-live="polite">
                 {error.phone}
               </span>
             )}
@@ -104,7 +108,7 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
             <input
               type="tel"
               id="phone"
-              className={error.phone ? style.hasError : ""}
+              className={error.phone ? styles.hasError : ""}
               value={personalInfo.phone}
               placeholder="e.g. +1 234 567 890"
               onChange={handleChange}
@@ -114,7 +118,7 @@ const Step1 = ({ setCurrentStep, personalInfo, setPersonalInfo }: Step1Props) =>
         </form>
       </div>
 
-      <div className={style.controls}>
+      <div className={styles.controls}>
         <NextBtn handleClick={() => validateForm() && setCurrentStep(2)} />
       </div>
     </div>

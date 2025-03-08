@@ -2,7 +2,7 @@ import { ADDONS } from "../../constants";
 import { AddOn, AddOnId, Billing, StepId } from "../../types";
 import BackBtn from "../BackBtn/BackBtn";
 import NextBtn from "../NextBtn/NextBtn";
-import style from "./Step3.module.css";
+import styles from "./Step3.module.css";
 
 interface Step3Props {
   selectedBilling: Billing;
@@ -11,7 +11,12 @@ interface Step3Props {
   setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
 }
 
-const Step3 = ({ selectedBilling, selectedAddOns, setCurrentStep, setSelectedAddOns }: Step3Props) => {
+const Step3 = ({
+  selectedBilling,
+  selectedAddOns,
+  setCurrentStep,
+  setSelectedAddOns,
+}: Step3Props) => {
   //
   const handleToggleAddOn = (id: AddOnId) => {
     const isAddonInList = selectedAddOns.some((a: AddOn) => a.id === id);
@@ -24,30 +29,37 @@ const Step3 = ({ selectedBilling, selectedAddOns, setCurrentStep, setSelectedAdd
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.content}>
-        <h1 className={style.title}>Pick add-ons</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Pick add-ons</h1>
 
-        <p className={style.description}>Add-ons help enhance your gaming experience.</p>
+        <p className={styles.description}>Add-ons help enhance your gaming experience.</p>
 
-        <form noValidate className={style.form}>
+        <form noValidate>
           {ADDONS.map((addon: AddOn) => {
             const { id, label, description, prices } = addon;
-            const price: string = selectedBilling === "yearly" ? `+$${prices.year}/yr` : `+$${prices.month}/mo`;
+            const price: string =
+              selectedBilling === "yearly"
+                ? `+$${prices.year}/yr`
+                : `+$${prices.month}/mo`;
             const isSelected: boolean = selectedAddOns.some((a: AddOn) => a.id === id);
             return (
               <div
                 key={id}
                 role="checkbox"
                 tabIndex={0}
-                className={`${style.addon} ${isSelected ? style.active : ""}`}
+                className={`${styles.addon} ${isSelected ? styles.active : ""}`}
                 aria-checked={isSelected}
                 onClick={() => handleToggleAddOn(id)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") handleToggleAddOn(id);
                 }}
               >
-                <label htmlFor={`addon-${id}`} className={style.checkbox} onClick={(e) => e.stopPropagation()}>
+                <label
+                  htmlFor={`addon-${id}`}
+                  className={styles.checkbox}
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <input
                     type="checkbox"
                     id={`addon-${id}`}
@@ -57,22 +69,22 @@ const Step3 = ({ selectedBilling, selectedAddOns, setCurrentStep, setSelectedAdd
                     aria-checked={isSelected}
                     onChange={() => handleToggleAddOn(id)}
                   />
-                  <span className={style.checkmark}></span>
+                  <span className={styles.checkmark}></span>
                 </label>
 
-                <div className={style.info}>
+                <div className={styles.info}>
                   <h3>{label}</h3>
                   <p>{description}</p>
                 </div>
 
-                <p className={style.price}>{price}</p>
+                <p className={styles.price}>{price}</p>
               </div>
             );
           })}
         </form>
       </div>
 
-      <div className={style.controls}>
+      <div className={styles.controls}>
         <BackBtn handleClick={() => setCurrentStep(2)} />
         <NextBtn handleClick={() => setCurrentStep(4)} />
       </div>

@@ -2,7 +2,7 @@ import { PLANS } from "../../constants";
 import { Billing, Plan, StepId } from "../../types";
 import BackBtn from "../BackBtn/BackBtn";
 import NextBtn from "../NextBtn/NextBtn";
-import style from "./Step2.module.css";
+import styles from "./Step2.module.css";
 
 interface Step2Props {
   selectedPlan: Plan;
@@ -38,16 +38,16 @@ const Step2 = ({
   const isYearly = selectedBilling === "yearly";
 
   return (
-    <div className={`${style.container} ${isYearly ? style.yearlyContainer : ""}`}>
-      <div className={style.content}>
-        <h1 className={style.title}>Select your plan</h1>
+    <div className={`${styles.container} ${isYearly ? styles.yearlyContainer : ""}`}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Select your plan</h1>
 
-        <p className={style.description}>
+        <p className={styles.description}>
           You have the option of monthly or yearly billing.
         </p>
 
-        <form noValidate className={style.form}>
-          <div className={style.plans}>
+        <form noValidate>
+          <div className={styles.plans}>
             {PLANS.map((plan: Plan) => {
               const { id, label, prices, icon } = plan;
               const price: string = isYearly
@@ -58,7 +58,7 @@ const Step2 = ({
                 <label
                   htmlFor={`plan-${id}`}
                   key={id}
-                  className={`${style.plan} ${isSelected ? style.active : ""}`}
+                  className={`${styles.plan} ${isSelected ? styles.active : ""}`}
                 >
                   <img src={icon} alt="" aria-hidden="true" />
 
@@ -72,7 +72,7 @@ const Step2 = ({
                     aria-checked={isSelected ? "true" : "false"}
                   />
 
-                  <div className={style.info}>
+                  <div className={styles.info}>
                     <span>{label}</span>
                     <span>{price}</span>
                     {isYearly && <span>2 months free</span>}
@@ -82,11 +82,11 @@ const Step2 = ({
             })}
           </div>
 
-          <div className={style.billing}>
-            <span className={`${style.label} ${!isYearly ? style.active : ""}`}>
+          <div className={styles.billing}>
+            <span className={`${styles.label} ${!isYearly ? styles.active : ""}`}>
               Monthly
             </span>
-            <label htmlFor="billing" className={style.switch}>
+            <label htmlFor="billing" className={styles.switch}>
               <input
                 type="checkbox"
                 id="billing"
@@ -94,16 +94,16 @@ const Step2 = ({
                 checked={isYearly}
                 onChange={handleBillingChange}
               />
-              <span className={style.slider}></span>
+              <span className={styles.slider}></span>
             </label>
-            <span className={`${style.label} ${isYearly ? style.active : ""}`}>
+            <span className={`${styles.label} ${isYearly ? styles.active : ""}`}>
               Yearly
             </span>
           </div>
         </form>
       </div>
 
-      <div className={style.controls}>
+      <div className={styles.controls}>
         <BackBtn handleClick={() => setCurrentStep(1)} />
         <NextBtn handleClick={() => setCurrentStep(3)} />
       </div>

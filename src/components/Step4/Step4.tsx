@@ -1,7 +1,7 @@
 import { AddOn, Billing, Plan, StepId } from "../../types";
 import BackBtn from "../BackBtn/BackBtn";
 import ConfirmBtn from "../ConfirmBtn/ConfirmBtn";
-import style from "./Step4.module.css";
+import styles from "./Step4.module.css";
 
 interface Step4Props {
   selectedPlan: Plan;
@@ -27,24 +27,24 @@ const Step4 = ({
   const finalTotal: number = planPrice + addonsTotal;
 
   return (
-    <div className={style.container}>
-      <div className={style.content}>
-        <h1 className={style.title}>Finishing up</h1>
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Finishing up</h1>
 
-        <p className={style.description}>
+        <p className={styles.description}>
           Double-check everything looks OK before confirming.
         </p>
 
         <div>
-          <div className={style.recap}>
-            <div className={style.plan}>
+          <div className={styles.recap}>
+            <div className={styles.plan}>
               <div>
-                <p className={style.label}>{`${selectedPlan.label} (${
+                <p className={styles.label}>{`${selectedPlan.label} (${
                   isYearly ? "Yearly" : "Monthly"
                 })`}</p>
                 <button
                   type="button"
-                  className={style.changeBtn}
+                  className={styles.changeBtn}
                   onClick={() => setCurrentStep(2)}
                   aria-label="Change plan"
                 >
@@ -52,20 +52,20 @@ const Step4 = ({
                 </button>
               </div>
 
-              <p className={style.price}>
+              <p className={styles.price}>
                 {isYearly
                   ? `$${selectedPlan.prices.year}/yr`
                   : `$${selectedPlan.prices.month}/mo`}
               </p>
             </div>
             {selectedAddOns.length === 0 ? (
-              <p className={style.noAddons}>No add-ons selected</p>
+              <p className={styles.noAddons}>No add-ons selected</p>
             ) : (
-              <div className={style.addons}>
+              <div className={styles.addons}>
                 {selectedAddOns.map((a: AddOn) => {
                   const { id, label, prices } = a;
                   return (
-                    <div key={id} className={style.addon}>
+                    <div key={id} className={styles.addon}>
                       <span>{label}</span>
                       <span>
                         {isYearly ? `+$${prices.year}/yr` : `+$${prices.month}/mo`}
@@ -77,14 +77,14 @@ const Step4 = ({
             )}
           </div>
 
-          <div className={style.total}>
+          <div className={styles.total}>
             <span>{`Total (per ${isYearly ? "year" : "month"})`}</span>
             <span>{isYearly ? `$${finalTotal}/year` : `$${finalTotal}/mo`}</span>
           </div>
         </div>
       </div>
 
-      <div className={style.controls}>
+      <div className={styles.controls}>
         <BackBtn handleClick={() => setCurrentStep(3)} />
         <ConfirmBtn handleClick={() => setCurrentStep(5)} />
       </div>

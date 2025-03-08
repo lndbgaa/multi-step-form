@@ -1,10 +1,11 @@
-.container {
+div.container {
   --container-width: 45rem;
+  --container-height: auto;
   --container-padding: 4rem 0 1.6rem;
   --container-margin: 0 0 0 10rem;
 
-  position: relative;
   width: var(--container-width);
+  height: var(--container-height);
   margin: var(--container-margin);
   padding: var(--container-padding);
   display: flex;
@@ -12,33 +13,29 @@
   justify-content: space-between;
 }
 
-.title {
+h1.title {
   margin-bottom: 1rem;
   font-size: var(--fs-xlarge);
   font-weight: var(--fw-bold);
   color: var(--clr-primary-blue-800);
 }
 
-.description {
+p.description {
   margin-bottom: 3.5rem;
   line-height: 25px;
   color: var(--clr-neutral-gray-600);
 }
 
-.form {
-  flex: 1;
-}
-
-.form .name,
-.form .email,
-.form .phone {
+.form div.name,
+.form div.email,
+.form div.phone {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.form .name,
-.form .email {
+.form div.name,
+.form div.email {
   margin-bottom: 2.4rem;
 }
 
@@ -71,13 +68,13 @@
   border-color: var(--clr-primary-blue-600);
 }
 
-.controls {
+div.controls {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
-.error {
+span.error {
   position: absolute;
   top: 0;
   right: 0;
@@ -89,53 +86,65 @@
 /* -------------------------------- Media Queries -------------------------------- */
 
 @media screen and (max-width: 1024px) {
-  .container {
-    --container-margin: 0 0 0 4rem;
+  div.container {
+    --container-margin: 0 0 0 7.5rem;
   }
 }
 
-@media screen and (max-width: 900px) {
-  .container {
-    --container-margin: 0 0 0 2rem;
+@media screen and (max-width: 950px) {
+  div.container {
+    --container-margin: 0 0 0 5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  div.container {
     --container-width: 100%;
     --container-margin: 0;
     --container-padding: 0;
-    flex: 1;
   }
 
-  .content {
-    position: absolute;
+  div.content {
+    min-height: 42rem;
+    max-width: 40rem;
     width: 90%;
-    max-width: 42rem;
-    top: -8.5rem;
-    align-self: center;
+    margin: -8.5rem 2rem 0;
     padding: 3.2rem 2.4rem;
+    align-self: center;
     border-radius: 10px;
     background-color: var(--clr-neutral-white);
   }
 
-  .title {
+  h1.title {
     font-size: var(--fs-large);
   }
 
-  .description {
+  p.description {
     margin-bottom: 2.2rem;
   }
 
-  .form .name,
-  .form .email {
+  .form div.name,
+  .form div.email {
     margin-bottom: 1.6rem;
   }
 
-  .controls {
-    position: absolute;
+  div.controls {
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     padding: 1.6rem 3.2rem;
     background-color: var(--clr-neutral-white);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.controls {
+    padding: 1.6rem;
+  }
+
+  span.error {
+    top: 0.15rem;
+    font-size: var(--fs-xsmall);
   }
 }

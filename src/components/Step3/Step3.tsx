@@ -6,29 +6,21 @@ import style from "./Step3.module.css";
 
 interface Step3Props {
   selectedBilling: Billing;
-  selectedAddons: AddOn[];
-  setSelectedAddons: React.Dispatch<React.SetStateAction<AddOn[]>>;
+  selectedAddOns: AddOn[];
+  setSelectedAddOns: React.Dispatch<React.SetStateAction<AddOn[]>>;
   setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
 }
 
-const Step3 = ({ selectedBilling, selectedAddons, setCurrentStep, setSelectedAddons }: Step3Props) => {
+const Step3 = ({ selectedBilling, selectedAddOns, setCurrentStep, setSelectedAddOns }: Step3Props) => {
   //
-  const handleDivClick = (id: AddOnId) => {
-    const isAddonInList = selectedAddons.some((a: AddOn) => a.id === id);
+  const handleToggleAddOn = (id: AddOnId) => {
+    const isAddonInList = selectedAddOns.some((a: AddOn) => a.id === id);
 
     // If the addon is already in the list, remove it; otherwise, add it
     const newAddOns = isAddonInList
-      ? selectedAddons.filter((a: AddOn) => a.id !== id)
-      : [...selectedAddons, ADDONS.find((a: AddOn) => a.id === id)].filter(Boolean);
-    setSelectedAddons(newAddOns as AddOn[]);
-  };
-
-  const handleCheckboxChange = ({ target: { checked, value } }: React.ChangeEvent<HTMLInputElement>) => {
-    // If the checkbox is checked, add the addon; otherwise, remove it
-    const newAddOns = checked
-      ? [...selectedAddons, ADDONS.find((a: AddOn) => a.id === value)]
-      : selectedAddons.filter((a: AddOn) => a.id !== value);
-    setSelectedAddons(newAddOns as AddOn[]);
+      ? selectedAddOns.filter((a: AddOn) => a.id !== id)
+      : [...selectedAddOns, ADDONS.find((a: AddOn) => a.id === id)].filter(Boolean);
+    setSelectedAddOns(newAddOns as AddOn[]);
   };
 
   return (
@@ -42,23 +34,30 @@ const Step3 = ({ selectedBilling, selectedAddons, setCurrentStep, setSelectedAdd
           {ADDONS.map((addon: AddOn) => {
             const { id, label, description, prices } = addon;
             const price: string = selectedBilling === "yearly" ? `+$${prices.year}/yr` : `+$${prices.month}/mo`;
-            const isSelected: boolean = selectedAddons.some((a: AddOn) => a.id === id);
+            const isSelected: boolean = selectedAddOns.some((a: AddOn) => a.id === id);
             return (
               <div
                 key={id}
+                role="checkbox"
+                tabIndex={0}
                 className={`${style.addon} ${isSelected ? style.active : ""}`}
-                onClick={() => handleDivClick(id)}
+                aria-checked={isSelected}
+                onClick={() => handleToggleAddOn(id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") handleToggleAddOn(id);
+                }}
               >
-                <label className={style.checkbox} onClick={(e) => e.stopPropagation()}>
+                <label htmlFor={`addon-${id}`} className={style.checkbox} onClick={(e) => e.stopPropagation()}>
                   <input
                     type="checkbox"
+                    id={`addon-${id}`}
                     name="addon"
                     value={id}
                     checked={isSelected}
-                    onChange={handleCheckboxChange}
                     aria-checked={isSelected}
+                    onChange={() => handleToggleAddOn(id)}
                   />
-                  <div className={style.checkmark}></div>
+                  <span className={style.checkmark}></span>
                 </label>
 
                 <div className={style.info}>

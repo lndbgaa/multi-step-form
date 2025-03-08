@@ -1,9 +1,11 @@
 .container {
   --container-width: 27.4rem;
   --container-padding: 4rem 3.2rem;
+  --container-height: 100%
 
   max-width: var(--container-width);
   width: min(100%, var(--container-width));
+  height: var(--container-height);
   padding: var(--container-padding);
   display: flex;
   flex-direction: column;
@@ -12,40 +14,9 @@
   background: url("./../../assets/images/bg-sidebar-desktop.svg") no-repeat center/cover;
 }
 
-@media screen and (max-width: 900px) {
-  .container {
-    --container-width: 23.4rem;
-    --container-padding: 4rem 2rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    --container-width: 100%;
-
-    height: 20rem; /* !!! */
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 0;
-    background: url("./../../assets/images/bg-sidebar-mobile.svg") no-repeat center/cover;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .container {
-    gap: 2rem;
-  }
-}
-
 .step {
   display: flex;
   align-items: center;
-}
-
-@media screen and (max-width: 768px) {
-  .step {
-    display: block;
-  }
 }
 
 .step .number {
@@ -74,12 +45,6 @@
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 768px) {
-  .step .info {
-    display: none;
-  }
-}
-
 .step .info span:first-of-type {
   font-size: var(--fs-xsmall);
   color: var(--clr-primary-blue-400);
@@ -90,4 +55,51 @@
   font-size: var(--fs-small);
   font-weight: var(--fw-bold);
   color: var(--clr-neutral-white);
+}
+
+@media screen and (max-width: 950px) {
+  .container {
+    --container-width: 23.4rem;
+    --container-padding: 4rem 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    --container-width: 100%;
+    --container-height: 17.2rem;
+    --container-padding: 2.4rem 0;
+
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 0;
+    background: url("./../../assets/images/bg-sidebar-mobile.svg") no-repeat center/cover;
+  }
+
+  .step {
+    display: block;
+  }
+
+  .step .number {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .step .info {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    --container-height: 15rem;
+    --container-padding: 1.6rem 0;
+    gap: 1.6rem;
+
+  }
+
+  .step .number {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
 }

@@ -1,10 +1,11 @@
-.container {
+div.container {
   --container-width: 45rem;
+  --container-height: auto;
   --container-padding: 4rem 0 1.6rem;
   --container-margin: 0 0 0 10rem;
 
-  position: relative;
   width: var(--container-width);
+  height: var(--container-height);
   margin: var(--container-margin);
   padding: var(--container-padding);
   display: flex;
@@ -12,51 +13,49 @@
   justify-content: space-between;
 }
 
-.title {
+h1.title {
   margin-bottom: 1rem;
   font-size: var(--fs-xlarge);
   font-weight: var(--fw-bold);
   color: var(--clr-primary-blue-800);
 }
 
-.description {
+p.description {
   margin-bottom: 3.5rem;
   line-height: 25px;
   color: var(--clr-neutral-gray-600);
 }
 
-.form {
-  flex: 1;
-}
-
-.addon {
+div.addon {
   height: 8rem;
+  width: 100%;
   margin-bottom: 1.6rem;
   padding: 1.8rem 2.4rem;
   display: flex;
   align-items: center;
   border-radius: 8px;
   border: 1px solid var(--clr-neutral-gray-400);
+  background-color: transparent;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.addon.active {
+div.addon.active {
   border-color: var(--clr-primary-blue-600);
   background-color: var(--clr-neutral-alabaster);
 }
 
-.addon:hover {
+div.addon:hover {
   border-color: var(--clr-primary-blue-600);
 }
 
-.addon .checkbox {
+div.addon .checkbox {
   position: relative;
   cursor: pointer;
 }
 
 /* hide checkbox input */
-.addon .checkbox input {
+div.addon .checkbox input {
   position: absolute;
   opacity: 0;
   height: 0;
@@ -64,7 +63,8 @@
   pointer-events: none;
 }
 
-.addon .checkbox .checkmark {
+div.addon .checkbox .checkmark {
+  display: block;
   position: relative;
   top: 0;
   left: 0;
@@ -75,12 +75,12 @@
   border: 1px solid var(--clr-neutral-gray-400);
 }
 
-.addon .checkbox input:checked ~ .checkmark {
+div.addon .checkbox input:checked ~ .checkmark {
   background-color: var(--clr-primary-blue-600);
   border: none;
 }
 
-.addon .checkbox .checkmark:after {
+div.addon .checkbox .checkmark:after {
   content: "";
   position: absolute;
   left: 0.7rem;
@@ -93,34 +93,35 @@
   transform: rotate(45deg);
 }
 
-.addon .checkbox input:checked ~ .checkmark:after {
+div.addon .checkbox input:checked ~ .checkmark:after {
   display: block;
 }
 
-.addon .info {
+div.addon div.info {
   margin-left: 2.4rem;
 }
 
-.addon .info h3 {
+div.addon div.info h3 {
+  text-align: start;
   font-size: var(--fs-base);
   color: var(--clr-primary-blue-800);
   font-weight: var(--fw-medium);
 }
 
-.addon .info p {
+div.addon div.info p {
   line-height: 2rem;
   font-size: var(--fs-small);
   color: var(--clr-neutral-gray-600);
 }
 
-.addon .price {
+div.addon p.price {
   margin-left: auto;
   line-height: 20px;
   font-size: var(--fs-small);
   color: var(--clr-primary-blue-600);
 }
 
-.controls {
+div.controls {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -128,62 +129,68 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .container {
-    --container-margin: 0 0 0 4rem;
+  div.container {
+    --container-margin: 0 0 0 7.5rem;
   }
 }
 
-@media screen and (max-width: 900px) {
-  .container {
-    --container-margin: 0 0 0 2rem;
+@media screen and (max-width: 950px) {
+  div.container {
+    --container-margin: 0 0 0 5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  div.container {
     --container-width: 100%;
     --container-margin: 0;
     --container-padding: 0;
-
-    flex: 1;
   }
 
-  .content {
-    position: absolute;
+  div.content {
+    min-height: 42rem;
+    max-width: 40rem;
     width: 90%;
-    max-width: 42rem;
-    top: -8.5rem;
-    align-self: center;
+    margin: -8.5rem 2rem 0;
     padding: 3.2rem 2.4rem;
+    align-self: center;
     border-radius: 10px;
     background-color: var(--clr-neutral-white);
   }
 
-  .title {
+  h1.title {
     font-size: var(--fs-large);
   }
 
-  .description {
+  p.description {
     margin-bottom: 2.2rem;
   }
 
-  .addon .info {
+  div.addon div.info {
     margin-left: 1.6rem;
   }
 
-  .addon .info h3 {
+  div.addon div.info h3 {
     font-size: var(--fs-small);
   }
 
-  .addon .info p,
-  .addon .price {
+  div.addon div.info p,
+  div.addon p.price {
     font-size: var(--fs-xsmall);
   }
 
-  .controls {
-    position: absolute;
+  div.controls {
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     padding: 1.6rem 3.2rem;
     background-color: var(--clr-neutral-white);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.controls {
+    padding: 1.6rem;
   }
 }

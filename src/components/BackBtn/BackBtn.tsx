@@ -6,7 +6,12 @@ interface BtnProps {
 
 const BackBtn = ({ handleClick }: BtnProps) => {
   return (
-    <button type="button" className={style.btn} onClick={handleClick} aria-label="Go back to the previous step">
+    <button
+      type="button"
+      className={style.btn}
+      onClick={handleClick}
+      aria-label="Go back to the previous step"
+    >
       Go Back
     </button>
   );

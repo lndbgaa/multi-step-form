@@ -1,10 +1,11 @@
-.container {
+div.container {
   --container-width: 45rem;
+  --container-height: auto;
   --container-padding: 4rem 0 1.6rem;
   --container-margin: 0 0 0 10rem;
 
-  position: relative;
   width: var(--container-width);
+  height: var(--container-height);
   margin: var(--container-margin);
   padding: var(--container-padding);
   display: flex;
@@ -12,28 +13,28 @@
   justify-content: space-between;
 }
 
-.title {
+h1.title {
   margin-bottom: 1rem;
   font-size: var(--fs-xlarge);
   font-weight: var(--fw-bold);
   color: var(--clr-primary-blue-800);
 }
 
-.description {
+p.description {
   margin-bottom: 3.5rem;
   line-height: 25px;
   color: var(--clr-neutral-gray-600);
 }
 
-.plansWrapper {
+div.plans {
   margin-bottom: 3.2rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(10rem, 13.8rem));
+  grid-template-columns: repeat(3, minmax(11.5rem, 13.8rem));
   gap: 1.8rem;
 }
 
-.plan {
-  height: 16rem; /* !!! */
+div.plans label.plan {
+  height: 16rem;
   padding: 2rem 1.6rem;
   display: flex;
   flex-direction: column;
@@ -44,22 +45,22 @@
   transition: all 0.3s ease;
 }
 
-.plan.active {
+div.plans label.plan.active {
   background-color: var(--clr-neutral-alabaster);
   border-color: var(--clr-primary-blue-600);
 }
 
-.plan:hover {
+div.plans label.plan:hover {
   border-color: var(--clr-primary-blue-600);
 }
 
-.plan img {
+div.plans label.plan img {
   width: 4rem;
   height: 4rem;
 }
 
 /* hide radio and checkbox input */
-.plan input,
+div.plans label.plan input,
 .switch input {
   position: absolute;
   opacity: 0;
@@ -68,31 +69,31 @@
   pointer-events: none;
 }
 
-.plan .info {
+div.plans label.plan div.info {
   display: flex;
   flex-direction: column;
 }
 
-.plan .info span:first-of-type {
+div.plans label.plan div.info span:first-of-type {
   margin-bottom: 0.5rem;
   font-size: var(--fs-base);
   font-weight: var(--fw-medium);
   color: var(--clr-primary-blue-800);
 }
 
-.plan .info span:nth-of-type(2) {
+div.plans label.plan div.info span:nth-of-type(2) {
   font-size: var(--fs-small);
   color: var(--clr-neutral-gray-600);
 }
 
-.plan .info span:nth-of-type(3) {
+div.plans label.plan div.info span:nth-of-type(3) {
   margin-top: 0.5rem;
   font-size: var(--fs-xsmall);
   color: var(--clr-primary-blue-800);
 }
 
-.billing {
-  height: 4.8rem; /* !!! */
+div.billing {
+  height: 4.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,25 +101,25 @@
   background-color: var(--clr-neutral-alabaster);
 }
 
-.label {
+div.billing span.label {
   font-size: var(--fs-small);
   font-weight: var(--fw-bold);
   color: var(--clr-neutral-gray-600);
   transition: all 0.3s ease;
 }
 
-.label.active {
+div.billing span.label.active {
   color: var(--clr-primary-blue-800);
 }
 
-.switch {
+div.billing label.switch {
   margin: 0 2.4rem;
   position: relative;
   width: 3.8rem;
   height: 2rem;
 }
 
-.switch .slider {
+label.switch span.slider {
   position: absolute;
   inset: 0;
   background-color: var(--clr-primary-blue-800);
@@ -128,7 +129,7 @@
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.switch .slider:before {
+label.switch span.slider:before {
   position: absolute;
   content: "";
   height: 1.4rem;
@@ -141,7 +142,7 @@
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.switch .slider:after {
+label.switch span.slider:after {
   position: absolute;
   content: "";
   height: 1.4rem;
@@ -153,19 +154,19 @@
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.switch input:focus + .slider {
+label.switch input:focus + span.slider {
   box-shadow: 0 0 1px var(--clr-neutral-gray-800);
 }
 
-.switch input:checked + .slider:before {
+label.switch input:checked + span.slider:before {
   transform: translateY(0);
 }
 
-.switch input:checked + .slider:after {
+label.switch input:checked + span.slider:after {
   transform: translateX(-150%);
 }
 
-.controls {
+div.controls {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -175,52 +176,50 @@
 /* -------------------------------- Media Queries -------------------------------- */
 
 @media screen and (max-width: 1024px) {
-  .container {
-    --container-margin: 0 0 0 4rem;
+  div.container {
+    --container-margin: 0 0 0 7.5rem;
   }
 }
 
-@media screen and (max-width: 900px) {
-  .container {
-    --container-margin: 0 0 0 2rem;
+@media screen and (max-width: 950px) {
+  div.container {
+    --container-margin: 0 0 0 5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  div.container {
     --container-width: 100%;
     --container-margin: 0;
     --container-padding: 0;
-
-    flex: 1;
   }
 
-  .content {
-    position: absolute;
+  div.content {
+    min-height: 42rem;
+    max-width: 40rem;
     width: 90%;
-    max-width: 42rem;
-    top: -8.5rem;
-    align-self: center;
+    margin: -8.5rem 2rem 0;
     padding: 3.2rem 2.4rem;
+    align-self: center;
     border-radius: 10px;
     background-color: var(--clr-neutral-white);
   }
 
-  .title {
+  h1.title {
     font-size: var(--fs-large);
   }
 
-  .description {
+  p.description {
     margin-bottom: 2.2rem;
   }
 
-  .plansWrapper {
+  div.plans {
     margin-bottom: 2.4rem;
     grid-template-columns: 1fr;
     gap: 1.2rem;
   }
 
-  .plan {
+  div.plans label.plan {
     max-height: 10rem;
     height: auto;
     flex-direction: row;
@@ -228,14 +227,28 @@
     align-items: center;
   }
 
-  .plan img {
+  div.plans label.plan img {
     margin-right: 1.4rem;
   }
 
-  .controls {
-    position: absolute;
+  div.controls {
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     padding: 1.6rem 3.2rem;
     background-color: var(--clr-neutral-white);
+  }
+}
+
+@media screen and (max-height: 700px) {
+  div.yearlyContainer {
+    padding-bottom: 9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  div.controls {
+    padding: 1.6rem;
   }
 }

@@ -6,7 +6,12 @@ interface BtnProps {
 
 const ConfirmBtn = ({ handleClick }: BtnProps) => {
   return (
-    <button type="button" className={style.btn} onClick={handleClick} aria-label="Confirm your choices">
+    <button
+      type="button"
+      className={style.btn}
+      onClick={handleClick}
+      aria-label="Confirm your choices"
+    >
       Confirm
     </button>
   );

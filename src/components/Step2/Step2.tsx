@@ -12,15 +12,25 @@ interface Step2Props {
   setCurrentStep: React.Dispatch<React.SetStateAction<StepId>>;
 }
 
-const Step2 = ({ selectedPlan, selectedBilling, setSelectedPlan, setSelectedBilling, setCurrentStep }: Step2Props) => {
-  const handlePlanChange = ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+const Step2 = ({
+  selectedPlan,
+  selectedBilling,
+  setSelectedPlan,
+  setSelectedBilling,
+  setCurrentStep,
+}: Step2Props) => {
+  const handlePlanChange = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     const selected = PLANS.find((plan: Plan) => plan.id === value) as Plan;
     if (selected) {
       setSelectedPlan(selected);
     }
   };
 
-  const handleBillingChange = ({ target: { checked } }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBillingChange = ({
+    target: { checked },
+  }: React.ChangeEvent<HTMLInputElement>) => {
     const newBilling: Billing = checked ? "yearly" : "monthly";
     setSelectedBilling(newBilling);
   };
@@ -28,25 +38,33 @@ const Step2 = ({ selectedPlan, selectedBilling, setSelectedPlan, setSelectedBill
   const isYearly = selectedBilling === "yearly";
 
   return (
-    <div className={style.container}>
+    <div className={`${style.container} ${isYearly ? style.yearlyContainer : ""}`}>
       <div className={style.content}>
         <h1 className={style.title}>Select your plan</h1>
 
-        <p className={style.description}>You have the option of monthly or yearly billing.</p>
+        <p className={style.description}>
+          You have the option of monthly or yearly billing.
+        </p>
 
         <form noValidate className={style.form}>
-          <div className={style.plansWrapper}>
+          <div className={style.plans}>
             {PLANS.map((plan: Plan) => {
               const { id, label, prices, icon } = plan;
-              const price: string = isYearly ? `$${prices.year}/yr` : `$${prices.month}/mo`;
+              const price: string = isYearly
+                ? `$${prices.year}/yr`
+                : `$${prices.month}/mo`;
               const isSelected: boolean = selectedPlan.id === id;
               return (
-                <label htmlFor={id} key={id} className={`${style.plan} ${isSelected ? style.active : ""}`}>
-                  <img src={icon} aria-hidden="true" />
+                <label
+                  htmlFor={`plan-${id}`}
+                  key={id}
+                  className={`${style.plan} ${isSelected ? style.active : ""}`}
+                >
+                  <img src={icon} alt="" aria-hidden="true" />
 
                   <input
                     type="radio"
-                    id={id}
+                    id={`plan-${id}`}
                     name="plan"
                     value={id}
                     checked={isSelected}
@@ -65,7 +83,9 @@ const Step2 = ({ selectedPlan, selectedBilling, setSelectedPlan, setSelectedBill
           </div>
 
           <div className={style.billing}>
-            <span className={`${style.label} ${!isYearly ? style.active : ""}`}>Monthly</span>
+            <span className={`${style.label} ${!isYearly ? style.active : ""}`}>
+              Monthly
+            </span>
             <label htmlFor="billing" className={style.switch}>
               <input
                 type="checkbox"
@@ -76,7 +96,9 @@ const Step2 = ({ selectedPlan, selectedBilling, setSelectedPlan, setSelectedBill
               />
               <span className={style.slider}></span>
             </label>
-            <span className={`${style.label} ${isYearly ? style.active : ""}`}>Yearly</span>
+            <span className={`${style.label} ${isYearly ? style.active : ""}`}>
+              Yearly
+            </span>
           </div>
         </form>
       </div>

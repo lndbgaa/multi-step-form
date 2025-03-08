@@ -4,7 +4,7 @@ import style from "./Step5.module.css";
 const Step5 = () => {
   return (
     <div className={style.container}>
-      <img src={thankIcon} aria-hidden="true" />
+      <img src={thankIcon} alt="" aria-hidden="true" />
 
       <h1 className={style.title}>Thank you!</h1>
       <p className={style.description}>

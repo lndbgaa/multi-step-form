@@ -6,7 +6,12 @@ interface BtnProps {
 
 const NextBtn = ({ handleClick }: BtnProps) => {
   return (
-    <button type="button" className={style.btn} onClick={handleClick} aria-label="Go to the next step">
+    <button
+      type="button"
+      className={style.btn}
+      onClick={handleClick}
+      aria-label="Go to the next step"
+    >
       Next Step
     </button>
   );

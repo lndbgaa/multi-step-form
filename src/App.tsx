@@ -11,50 +11,70 @@ import { AddOn, Billing, PersonalInfo, Plan, StepId } from "./types.ts";
 
 function App() {
   const [currentStep, setCurrentStep] = useState<StepId>(1);
+  const [selectedPlan, setSelectedPlan] = useState<Plan>(PLANS[0]);
+  const [selectedBilling, setSelectedBilling] = useState<Billing>("monthly");
+  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([ADDONS[0], ADDONS[1]]);
   const [personalInfo, setPersonalInfo] = useState<PersonalInfo>({
     name: "",
     email: "",
     phone: "",
   });
-  const [selectedPlan, setSelectedPlan] = useState<Plan>(PLANS[0]);
-  const [selectedBilling, setSelectedBilling] = useState<Billing>("yearly");
-  const [selectedAddons, setSelectedAddOns] = useState<AddOn[]>([ADDONS[0], ADDONS[1]]);
 
-  const steps = {
-    1: <Step1 personalInfo={personalInfo} setPersonalInfo={setPersonalInfo} setCurrentStep={setCurrentStep} />,
-    2: (
-      <Step2
-        selectedPlan={selectedPlan}
-        selectedBilling={selectedBilling}
-        setSelectedPlan={setSelectedPlan}
-        setSelectedBilling={setSelectedBilling}
-        setCurrentStep={setCurrentStep}
-      />
-    ),
-    3: (
-      <Step3
-        selectedBilling={selectedBilling}
-        selectedAddons={selectedAddons}
-        setSelectedAddons={setSelectedAddOns}
-        setCurrentStep={setCurrentStep}
-      />
-    ),
-    4: (
-      <Step4
-        selectedPlan={selectedPlan}
-        selectedBilling={selectedBilling}
-        selectedAddons={selectedAddons}
-        setCurrentStep={setCurrentStep}
-      />
-    ),
-    5: <Step5 />,
-  };
+  let stepContent;
+
+  switch (currentStep) {
+    case 1:
+      stepContent = (
+        <Step1
+          personalInfo={personalInfo}
+          setPersonalInfo={setPersonalInfo}
+          setCurrentStep={setCurrentStep}
+        />
+      );
+      break;
+    case 2:
+      stepContent = (
+        <Step2
+          selectedPlan={selectedPlan}
+          selectedBilling={selectedBilling}
+          setSelectedPlan={setSelectedPlan}
+          setSelectedBilling={setSelectedBilling}
+          setCurrentStep={setCurrentStep}
+        />
+      );
+      break;
+    case 3:
+      stepContent = (
+        <Step3
+          selectedBilling={selectedBilling}
+          selectedAddOns={selectedAddOns}
+          setSelectedAddOns={setSelectedAddOns}
+          setCurrentStep={setCurrentStep}
+        />
+      );
+      break;
+    case 4:
+      stepContent = (
+        <Step4
+          selectedPlan={selectedPlan}
+          selectedBilling={selectedBilling}
+          selectedAddOns={selectedAddOns}
+          setCurrentStep={setCurrentStep}
+        />
+      );
+      break;
+    case 5:
+      stepContent = <Step5 />;
+      break;
+    default:
+      stepContent = null;
+  }
 
   return (
     <main>
       <SideBar currentStep={currentStep} />
 
-      {steps[currentStep]}
+      {stepContent}
     </main>
   );
 }

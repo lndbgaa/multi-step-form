@@ -143,7 +143,7 @@ div.controls {
 @media screen and (max-width: 768px) {
   div.container {
     --container-width: 100%;
-    --container-height: calc(100vh - 15rem);
+    --container-height: calc(100vh - 15rem - 8.5rem);
     --container-margin: 0;
     --container-padding: 0;
   }
